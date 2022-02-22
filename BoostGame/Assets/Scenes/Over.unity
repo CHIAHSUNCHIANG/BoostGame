@@ -485,6 +485,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 740529959, guid: 9c830e61f700a54489792028a6bb6d27, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 740529966, guid: 9c830e61f700a54489792028a6bb6d27, type: 3}
+      propertyPath: end
+      value: 
+      objectReference: {fileID: 8300000, guid: cf1aceb49297e9d4394cb453b37d4635, type: 3}
+    - target: {fileID: 740529966, guid: 9c830e61f700a54489792028a6bb6d27, type: 3}
+      propertyPath: success
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ec407f56a4c54f4094216a397f69977, type: 3}
+    - target: {fileID: 4504954949688908885, guid: 9c830e61f700a54489792028a6bb6d27, type: 3}
+      propertyPath: mainEngine
+      value: 
+      objectReference: {fileID: 8300000, guid: b1f1f7f59ad62eb45aca061503cbace6, type: 3}
     - target: {fileID: 4504954950408038906, guid: 9c830e61f700a54489792028a6bb6d27, type: 3}
       propertyPath: m_Name
       value: Rocket
