@@ -6,8 +6,12 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] float levelLoadDelay = 2f;
     [SerializeField] AudioClip success;
     [SerializeField] AudioClip end;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem endParticles;
 
     AudioSource audioSource;
+
+    bool isTransitioning = false;
     
     void Start()
     {
@@ -16,6 +20,8 @@ public class CollisionHandler : MonoBehaviour
     
     void OnCollisionEnter(Collision other) 
     {
+        if (isTransitioning) { return; } // if isTransitioning is true 如果正在轉換場景，就不做以下動作 
+
         switch (other.gameObject.tag)
         {
             case "Friendly":
@@ -30,20 +36,25 @@ public class CollisionHandler : MonoBehaviour
         }
     }
     void StartSuccessSequence()
-    {
+    {        
+        isTransitioning = true;
+        audioSource.Stop(); // turn off all the sound before the success sound start
         audioSource.PlayOneShot(success);
+        successParticles.Play();
         // todo add particle effect upon crash
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
-
     }
 
     void StartCrashSequence()
     {
+        isTransitioning = true;
+        audioSource.Stop(); // turn off all the sound before the success sound start
         audioSource.PlayOneShot(end);
+        endParticles.Play();
         // todo add particle effect upon crash
         GetComponent<Movement>().enabled = false;
-        //<GetComponent<Scripts>().enalbe = bollean
+        //<GetComponent<Scripts>().enalbe = boolean
         Invoke("ReloadLevel", levelLoadDelay);
         //<Invoke("MethodName", DelayInSeconds)
     }
