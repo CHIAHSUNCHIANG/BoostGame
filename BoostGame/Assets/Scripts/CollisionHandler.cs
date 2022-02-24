@@ -12,15 +12,35 @@ public class CollisionHandler : MonoBehaviour
     AudioSource audioSource;
 
     bool isTransitioning = false;
+    bool collisionDisabled = false;
     
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
+
+    void Update()
+    {
+        ResponToDebugKeys();
+    }
+
+    void ResponToDebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisabled = !collisionDisabled;
+        }
+    }
+
     
     void OnCollisionEnter(Collision other) 
     {
-        if (isTransitioning) { return; } // if isTransitioning is true 如果正在轉換場景，就不做以下動作 
+        if (isTransitioning || collisionDisabled) { return; } // if isTransitioning is true 如果正在轉換場景，就不做以下動作 
 
         switch (other.gameObject.tag)
         {
@@ -35,6 +55,7 @@ public class CollisionHandler : MonoBehaviour
                 break;
         }
     }
+
     void StartSuccessSequence()
     {        
         isTransitioning = true;
